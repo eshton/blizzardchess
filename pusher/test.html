@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+  <title>Pusher Test</title>
+  <script src="https://js.pusher.com/3.2/pusher.min.js"></script>
+  <script src="../js/jquery.js"></script>
+</head>
+<body>
+<input id="inp" type="text" value="hello"/>
+<button id="btn">Click</button>
+
+  <script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('85bd7d5035de9cd7ceb0', {
+      cluster: 'eu',
+      encrypted: true,
+      authEndpoint: 'auth.php',
+    });
+
+    var channel = pusher.subscribe('private-1');
+    channel.bind('my-event', function(data) {
+      console.log(data.message);
+    });
+
+    $('#btn').click(function(){
+      channel.trigger('client-omg', {message:$('#inp').val()});
+    });
+
+  </script>
+</body>
+</html>

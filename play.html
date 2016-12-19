@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Blizzard chess</title>
+<link rel="stylesheet/less" type="text/css" href="css/style.css"/>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div id="units"></div>
+	<div id="chessTable"></div>
+	<div id="vuestuff">
+		<div id="scoreBoard">
+			<div v-if="loaded" id="players">
+				<span v-if="p1.position">
+				{{p1.name}}<br/>
+				({{p1.faction}})<br/>
+				vs.<br/>
+				{{p2.name}}<br/>
+				({{p2.faction}})			
+				</span>
+				<span v-if="p2.position">
+				{{p2.name}}<br/>
+				({{p2.faction}})<br/>
+				vs.<br/>
+				{{p1.name}}<br/>
+				({{p1.faction}})			
+				</span>			
+			</div>
+			<div v-if="!loaded" id="waitingText">
+				Waiting for players ...
+			</div>
+		</div>
+		<div id="whoseturn" v-if="loaded">
+			Next move:
+			<span v-if="whoseturn == 'p1'">{{p1.name}}</span>
+			<span v-if="whoseturn == 'p2'">{{p2.name}}</span>
+		</div>
+	</div>
+	<div id="activity_console"></div>
+	<div id="music">
+		<audio id="audio1" src="http://66.90.91.26/ost/hearthstone-heroes-of-warcraft-original-soundtrack/pbxjzwyrdb/02.-peter-mcconnel-pull-up-a-chair.mp3" controls="" preload="auto" autobuffer="">
+		</audio>
+	</div>
+</div>
+
+<script src="js/lib/pusher.js"></script>
+<script src="js/lib/vue.min.js"></script>
+<script src="js/lib/less.js" type="text/javascript"></script>
+<script src="js/lib/jquery.js" type="text/javascript"></script>
+
+<script src="js/console.js" type="text/javascript"></script>
+<script src="js/game.js" type="text/javascript"></script>
+<script src="js/multiplayer.js" type="text/javascript"></script>
+</body>
+
+</html>
